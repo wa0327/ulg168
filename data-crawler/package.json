@@ -1,0 +1,15 @@
+{
+  "name": "data-crawler",
+  "version": "1.0.0",
+  "description": "用來抓取帳戶明細資料。",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^1.0.0",
+    "sqlite": "^2.9.1"
+  }
+}
