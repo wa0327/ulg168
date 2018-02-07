@@ -3,8 +3,6 @@ import * as puppeteer from 'puppeteer';
 import { color } from './color';
 import { Database } from 'sqlite';
 
-console.log(`${process.argv}`);
-
 interface Entity {
     id: string,
     time: string,
