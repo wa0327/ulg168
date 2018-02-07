@@ -2,12 +2,7 @@
   "name": "data-crawler",
   "version": "1.0.0",
   "description": "used to fetch account transaction records.",
-  "main": "index.js",
-  "dependencies": {
-    "puppeteer": "^1.0.0",
-    "sqlite": "^2.9.1"
-  },
-  "devDependencies": {},
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +10,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wa0327/ulg168.git"
+    "url": "git+https://github.com/wa0327/ulg168.git"
   },
   "keywords": [
     "ulg168"
@@ -23,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/wa0327/ulg168/issues"
   },
-  "homepage": "https://github.com/wa0327/ulg168#readme"
+  "homepage": "https://github.com/wa0327/ulg168#readme",
+  "devDependencies": {
+    "@types/puppeteer": "^1.0.0"
+  },
+  "dependencies": {
+    "puppeteer": "^1.0.0",
+    "sqlite": "^2.9.1"
+  }
 }
