@@ -10,9 +10,9 @@ interface Entity {
     time: string,
     acct: string,
     type: string,
-    out: Number,
-    in: Number,
-    bal: Number,
+    out: number,
+    in: number,
+    bal: number,
     desc: string
 }
 
