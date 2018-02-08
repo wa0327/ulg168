@@ -1,7 +1,6 @@
-import * as sqlite from 'sqlite';
-import * as puppeteer from 'puppeteer';
+import { launch, Page } from 'puppeteer';
 import { color } from './color';
-import { Database } from 'sqlite';
+import { open, Database } from 'sqlite';
 
 interface Entity {
     id: string,
@@ -19,8 +18,7 @@ interface PageData {
     candidates: string[]
 }
 
-sqlite
-    .open('ulg168.db')
+open('ulg168.db')
     .then(db => db.exec(`
         create table if not exists "trans_raw"
         (
@@ -50,8 +48,7 @@ sqlite
         const candidates = await getCandidates(db);
         console.log(`從資料庫中取得 ${color.yellow(candidates.length.toLocaleString())} 筆名單。`);
 
-        await puppeteer
-            .launch({
+        await launch({
                 headless: false,
                 userDataDir: 'chromium-data'
             })
@@ -91,7 +88,7 @@ async function getCandidates(db: Database): Promise<string[]> {
     return candidates;
 }
 
-async function getEntities(page: puppeteer.Page, candidates: string[]): Promise<Entity[]> {
+async function getEntities(page: Page, candidates: string[]): Promise<Entity[]> {
     let all: Entity[] = [];
     const fetched: string[] = [];
 
@@ -117,7 +114,7 @@ async function getEntities(page: puppeteer.Page, candidates: string[]): Promise<
     return all;
 }
 
-async function getPageData(page: puppeteer.Page, user_id: string): Promise<PageData> {
+async function getPageData(page: Page, user_id: string): Promise<PageData> {
     await page.goto('http://ulg168.com/account');
     await page.select('select#user_type', 'sub');
     await page.type('input#username', user_id);
@@ -150,7 +147,7 @@ async function getPageData(page: puppeteer.Page, user_id: string): Promise<PageD
     };
 }
 
-async function getOnePageData(page: puppeteer.Page, user_id: string): Promise<PageData> {
+async function getOnePageData(page: Page, user_id: string): Promise<PageData> {
     await page.waitForSelector('ul.pagination');
     const dataTable = await page.waitForSelector('table#data_list');
     const pageInfo = await page.evaluate((user_id, dataTable): PageData => {
